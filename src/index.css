@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* Premium Dark Restaurant Theme */
+    --background: 20 14% 8%;
+    --foreground: 40 20% 92%;
+
+    --card: 20 12% 12%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 20 12% 12%;
+    --popover-foreground: 40 20% 92%;
+
+    /* Gold accent */
+    --primary: 42 78% 55%;
+    --primary-foreground: 20 14% 8%;
+
+    --secondary: 20 10% 18%;
+    --secondary-foreground: 40 15% 80%;
+
+    --muted: 20 10% 15%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 42 78% 55%;
+    --accent-foreground: 20 14% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 15% 20%;
+    --input: 40 15% 20%;
+    --ring: 42 78% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gold: 42 78% 55%;
+    --gold-light: 42 70% 70%;
+    --gold-dark: 42 85% 40%;
+    --cream: 40 30% 90%;
+    --paper: 35 25% 95%;
+
+    /* Typography */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 30px -5px hsl(42 78% 55% / 0.15);
+  }
+
+  .dark {
+    --background: 20 14% 8%;
+    --foreground: 40 20% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+}
+
+@layer components {
+  .menu-item-card {
+    @apply relative overflow-hidden rounded-xl bg-card p-5 transition-all duration-300;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .menu-item-card:active {
+    transform: scale(0.98);
+  }
+
+  .section-divider {
+    @apply relative flex items-center justify-center py-6;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply h-px flex-1 bg-gradient-to-r from-transparent;
+  }
+
+  .section-divider::before {
+    @apply to-primary/30;
+  }
+
+  .section-divider::after {
+    @apply from-primary/30 to-transparent;
+  }
+
+  .gold-shimmer {
+    background: linear-gradient(
+      110deg,
+      hsl(var(--gold-dark)) 0%,
+      hsl(var(--gold)) 45%,
+      hsl(var(--gold-light)) 55%,
+      hsl(var(--gold)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .category-badge {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium tracking-wide uppercase;
+    background: hsl(var(--gold) / 0.1);
+    color: hsl(var(--gold));
+    border: 1px solid hsl(var(--gold) / 0.2);
+  }
+
+  .price-tag {
+    @apply text-lg font-semibold;
+    font-family: var(--font-display);
+    color: hsl(var(--gold));
+  }
+
+  .special-badge {
+    @apply absolute -right-8 top-3 rotate-45 px-10 py-1 text-xs font-semibold uppercase tracking-wider;
+    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold)));
+    color: hsl(var(--background));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 200% center;
+  }
+  50% {
+    background-position: 0% center;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold) / 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold) / 0.5);
+}
