@@ -1,27 +1,388 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#1a1512" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Maison Dorée | Menu Digital</title>
-    <meta name="description" content="La Maison Dorée - Menu Digital | Gastronomia Francesa Contemporânea em São Paulo. Descubra nossas novidades do chef." />
-    <meta name="author" content="La Maison Dorée" />
+    <meta name="description" content="Изысканная Французская Кухня" />
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide via UNPKG) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <meta property="og:title" content="La Maison Dorée | Menu Digital" />
-    <meta property="og:description" content="Gastronomia Francesa Contemporânea em São Paulo. Descubra nossas novidades do chef." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#1a1512",
+                        foreground: "#fcfbf9",
+                        primary: "#D4AF37", 
+                        "primary-foreground": "#1a1512",
+                        muted: "#2d2620",
+                        "muted-foreground": "#a8a29e",
+                        card: "#241e19",
+                        "card-foreground": "#fcfbf9",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Playfair Display", "serif"],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lamaisondoree" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    <style>
+        body { background-color: #1a1512; color: #fcfbf9; font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        .gold-shimmer {
+            background: linear-gradient(to right, #D4AF37 20%, #F8F1D1 50%, #D4AF37 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+        
+        @keyframes shine { to { background-position: 200% center; } }
+        
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .slide-up { animation: slideUp 0.6s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="src/main.tsx"></script>
-  </body>
+    <!-- Header -->
+    <header class="relative pt-8 pb-6 text-center fade-in">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+        
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <i data-lucide="utensils-crossed" class="w-8 h-8 text-primary"></i>
+        </div>
+        
+        <h1 class="font-display text-3xl md:text-4xl tracking-wide gold-shimmer">
+            La Maison Dorée
+        </h1>
+        
+        <p class="mt-2 text-sm text-muted-foreground tracking-widest uppercase">
+            Изысканная Французская Кухня
+        </p>
+        
+        <div class="mt-6 flex items-center justify-center gap-3">
+            <span class="w-12 h-px bg-gradient-to-r from-transparent to-primary/50"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
+            <span class="w-12 h-px bg-gradient-to-l from-transparent to-primary/50"></span>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 max-w-md space-y-8">
+        
+        <!-- Specials Section -->
+        <section class="relative py-8">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-primary/10 to-transparent rounded-3xl -mx-2"></div>
+            
+            <div class="relative">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+                    <span class="text-xs uppercase tracking-[0.3em] text-primary/80 font-medium">Эксклюзив</span>
+                    <i data-lucide="sparkles" class="w-5 h-5 text-primary"></i>
+                </div>
+                
+                <h2 class="text-center font-display text-2xl md:text-3xl gold-shimmer mb-8">
+                    Новинки от Шефа
+                </h2>
+                
+                <div class="space-y-4">
+                    <!-- Special Item 1 -->
+                    <div class="slide-up stagger-1">
+                        <div class="relative overflow-hidden rounded-xl border border-primary/20 bg-card/50 p-4 shadow-sm">
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="space-y-1">
+                                    <h3 class="font-display text-lg font-medium text-foreground">Стейк Рибай с трюфелем</h3>
+                                    <p class="text-sm text-muted-foreground leading-relaxed">Мраморная говядина, картофельное пюре, черный трюфель и соус демиглас</p>
+                                </div>
+                                <span class="font-display text-lg font-semibold text-primary whitespace-nowrap">2500 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Special Item 2 -->
+                    <div class="slide-up stagger-2">
+                        <div class="relative overflow-hidden rounded-xl border border-primary/20 bg-card/50 p-4 shadow-sm">
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="space-y-1">
+                                    <h3 class="font-display text-lg font-medium text-foreground">Салат с камчатским крабом</h3>
+                                    <p class="text-sm text-muted-foreground leading-relaxed">Авокадо, томаты черри, соус юдзу и свежий краб</p>
+                                </div>
+                                <span class="font-display text-lg font-semibold text-primary whitespace-nowrap">1800 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Special Item 3 -->
+                    <div class="slide-up stagger-3">
+                        <div class="relative overflow-hidden rounded-xl border border-primary/20 bg-card/50 p-4 shadow-sm">
+                            <div class="flex justify-between items-start gap-4">
+                                <div class="space-y-1">
+                                    <h3 class="font-display text-lg font-medium text-foreground">Утиная грудка Су-вид</h3>
+                                    <p class="text-sm text-muted-foreground leading-relaxed">Утка 72ч, трюфельное пюре и соус Порто</p>
+                                </div>
+                                <span class="font-display text-lg font-semibold text-primary whitespace-nowrap">1650 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <div class="space-y-2">
+            
+            <!-- Entradas -->
+            <div class="space-y-3">
+                <button class="w-full flex items-center justify-between p-4 rounded-xl bg-card border border-border/50 hover:bg-card/80 transition-colors" onclick="toggleSection('entradas')">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-primary/10">
+                            <i data-lucide="salad" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <span class="font-display text-lg font-medium">Закуски</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground transition-transform" id="icon-entradas"></i>
+                </button>
+                
+                <div id="content-entradas" class="hidden space-y-4 pl-2 pr-2 pb-4">
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Карпаччо из Вагю</h4>
+                            <p class="text-sm text-muted-foreground/80">Тонкие слайсы Вагю А5, каперсы, руккола и пармезан 36 месяцев</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1200 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Гребешки на гриле</h4>
+                            <p class="text-sm text-muted-foreground/80">Свежие гребешки, пюре из цветной капусты и икра лайма</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">950 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Буррата с трюфелем</h4>
+                            <p class="text-sm text-muted-foreground/80">Сливочная буррата, конфи из томатов, песто и трюфельный мед</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">850 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Луковый суп</h4>
+                            <p class="text-sm text-muted-foreground/80">Классический французский рецепт с сыром грюйер и гренками</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">650 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Principais -->
+            <div class="space-y-3">
+                <button class="w-full flex items-center justify-between p-4 rounded-xl bg-card border border-border/50 hover:bg-card/80 transition-colors" onclick="toggleSection('principais')">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-primary/10">
+                            <i data-lucide="chef-hat" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <span class="font-display text-lg font-medium">Основные Блюда</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground transition-transform" id="icon-principais"></i>
+                </button>
+                
+                <div id="content-principais" class="hidden space-y-4 pl-2 pr-2 pb-4">
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Филе Миньон с соусом Беарнез</h4>
+                            <p class="text-sm text-muted-foreground/80">Филе 300г, картофель дофинуа и сезонные овощи</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1900 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Утиное конфи</h4>
+                            <p class="text-sm text-muted-foreground/80">Утиная ножка конфи 8ч, пюре из зеленого яблока</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1450 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Сибас в травах</h4>
+                            <p class="text-sm text-muted-foreground/80">Свежий сибас, ризотто с лимоном и пена из шампанского</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1350 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Равиоли с грибами</h4>
+                            <p class="text-sm text-muted-foreground/80">Свежая паста с миксом лесных грибов и шалфеем</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">890 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sobremesas -->
+            <div class="space-y-3">
+                <button class="w-full flex items-center justify-between p-4 rounded-xl bg-card border border-border/50 hover:bg-card/80 transition-colors" onclick="toggleSection('sobremesas')">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-primary/10">
+                            <i data-lucide="ice-cream" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <span class="font-display text-lg font-medium">Десерты</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground transition-transform" id="icon-sobremesas"></i>
+                </button>
+                
+                <div id="content-sobremesas" class="hidden space-y-4 pl-2 pr-2 pb-4">
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Ванильный Крем-брюле</h4>
+                            <p class="text-sm text-muted-foreground/80">Французская классика с мадагаскарской ванилью</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">550 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Шоколадный Фондан</h4>
+                            <p class="text-sm text-muted-foreground/80">Кекс из 70% шоколада с жидким центром и мороженым</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">600 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Тарт Татен</h4>
+                            <p class="text-sm text-muted-foreground/80">Деревенский пирог с карамелизированными яблоками</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">500 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Сырная тарелка</h4>
+                            <p class="text-sm text-muted-foreground/80">Бри, Конте, Рокфор с медом и орехами</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1100 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas -->
+            <div class="space-y-3">
+                <button class="w-full flex items-center justify-between p-4 rounded-xl bg-card border border-border/50 hover:bg-card/80 transition-colors" onclick="toggleSection('bebidas')">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-primary/10">
+                            <i data-lucide="wine" class="w-4 h-4 text-primary"></i>
+                        </div>
+                        <span class="font-display text-lg font-medium">Напитки</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-muted-foreground transition-transform" id="icon-bebidas"></i>
+                </button>
+                
+                <div id="content-bebidas" class="hidden space-y-4 pl-2 pr-2 pb-4">
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Шампанское Moët & Chandon</h4>
+                            <p class="text-sm text-muted-foreground/80">Бокал 150мл - Brut Imperial, фруктовые ноты</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">1800 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Красное вино - Château Margaux</h4>
+                            <p class="text-sm text-muted-foreground/80">Бокал 150мл - Бордо, бархатные танины</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">2500 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Негрони</h4>
+                            <p class="text-sm text-muted-foreground/80">Джин Tanqueray, Кампари, Вермут Россо</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">750 ₽</span>
+                    </div>
+                    <div class="flex justify-between items-start gap-4 py-2 border-b border-border/30 last:border-0">
+                        <div class="space-y-1">
+                            <h4 class="font-display text-base font-medium text-foreground/90">Вода San Pellegrino</h4>
+                            <p class="text-sm text-muted-foreground/80">Итальянская минеральная вода - 750мл</p>
+                        </div>
+                        <span class="font-display text-base font-medium text-primary whitespace-nowrap">450 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 pb-8 text-center fade-in">
+            <div class="flex items-center justify-center gap-3 mb-8">
+                <span class="w-16 h-px bg-gradient-to-r from-transparent to-primary/30"></span>
+                <span class="w-2 h-2 rotate-45 border border-primary/30"></span>
+                <span class="w-16 h-px bg-gradient-to-l from-transparent to-primary/30"></span>
+            </div>
+            
+            <div class="space-y-4 text-sm text-muted-foreground">
+                <div class="flex items-center justify-center gap-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-primary/70"></i>
+                    <span>Rua das Flores, 123 - Jardins, São Paulo</span>
+                </div>
+                
+                <div class="flex items-center justify-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4 text-primary/70"></i>
+                    <span>(11) 3456-7890</span>
+                </div>
+                
+                <div class="flex items-center justify-center gap-2">
+                    <i data-lucide="clock" class="w-4 h-4 text-primary/70"></i>
+                    <span>Ter-Dom: 19h às 00h</span>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-xs text-muted-foreground/50">
+                10% de serviço não incluído • Reservas recomendadas
+            </p>
+            
+            <p class="mt-4 text-xs text-muted-foreground/30">
+                © 2026 La Maison Dorée
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Inicializa os ícones
+        lucide.createIcons();
+
+        // Função para abrir/fechar seções
+        function toggleSection(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.classList.add('fade-in');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
 </html>
